@@ -33,7 +33,6 @@ first it will solve the first operation
 */
 let countOperation = 0
 
-let countDecimal = 0
 
 
 buttons.forEach(button => {
@@ -50,7 +49,7 @@ buttons.forEach(button => {
             }else {
                 countOperation = 1
             }
-            countDecimal = 0
+            
 
         }
 
@@ -62,7 +61,7 @@ buttons.forEach(button => {
             }else {
                 countOperation = 1
             }
-            countDecimal = 0
+            
 
         }
 
@@ -74,7 +73,7 @@ buttons.forEach(button => {
             }else {
                 countOperation = 1
             }
-            countDecimal = 0
+            
 
         }
 
@@ -86,7 +85,7 @@ buttons.forEach(button => {
             }else {
                 countOperation = 1
             }
-            countDecimal = 0
+            
         }
 
 
@@ -95,7 +94,7 @@ buttons.forEach(button => {
         if (button.innerHTML === 'Enter') {
             prevOutput.value = equation
             solve()
-            countDecimal = 0
+            
             countOperation = 0
         }
 
@@ -111,12 +110,43 @@ buttons.forEach(button => {
             button.innerHTML === '9' ||
             button.innerHTML === '0') {
             equation+=button.innerHTML
+            
         }
 
         // Decimal input
-        if (button.innerHTML === '.' && countDecimal === 0) {
-            equation+=button.innerHTML
-            countDecimal = 1
+        /*
+        double decimal will not add in the equation
+        decimal1 is for element 1 and decimal2 is for element 2
+        loop on each element check is their any decimal in element or not. If yes, then decimal1 / decimal2 will set to 1 and will not add in the equation
+
+        */
+        if (button.innerHTML === '.') {
+            let decimal1 = 0
+            let decimal2 = 0
+            let elems = equation.split(' ')
+
+            for (let index = 0; index < elems[0].length-1; index++) {
+                if (elems[0][index]==='.') {
+                    decimal1 = 1
+                }
+            }
+
+            // their is on element on place 2 then loop run on element 2 and prevent the error
+            if (elems[2]){
+                for (let index = 0; index < elems[2].length-1; index++) {
+                    if (elems[2][index]==='.') {
+                        decimal2 = 1
+                    }
+                }
+            }
+            
+            if (decimal1 === 0) {
+                equation+=button.innerHTML
+            }else
+            if (decimal2 === 0) {
+                equation+=button.innerHTML
+            }
+            
         }
 
         // All clear
