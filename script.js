@@ -114,44 +114,8 @@ buttons.forEach(button => {
         }
 
         // Decimal input
-        /*
-        double decimal will not add in the equation
-        decimal1 is for element 1 and decimal2 is for element 2
-        loop on each element check is their any decimal in element or not. If yes, then decimal1 / decimal2 will set to 1 and will not add in the equation
-
-        */
         if (button.innerHTML === '.') {
-            let decimal1 = 0
-            let decimal2 = 0
-            let countDecimal1 = 0
-            let elems = equation.split(' ')
-
-            for (let index = 0; index < elems[0].length; index++) {
-                if (elems[0][index]==='.') {
-                    decimal1 = 1
-                    countDecimal1 = 2
-                }
-            }
-
-            // their is on element on place 2 then loop run on element 2 and prevent the error
-            if (elems[2]){
-                for (let index = 0; index < elems[2].length; index++) {
-                    if (elems[2][index]==='.') {
-                        if (decimal1 === 1) {
-                            decimal2 = 2
-                        }
-                        if (decimal1 === 0) {
-                            decimal2 = 1
-                        }
-                    }
-                }
-            }
-            
-            if (decimal1 === 0 || decimal2 === countDecimal1) {
-                equation+=button.innerHTML
-            }
-            
-            
+            equation+=button.innerHTML                   
         }
 
         // All clear
